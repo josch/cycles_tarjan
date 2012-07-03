@@ -52,18 +52,16 @@ procedure circuit_enumeration;
   end;
 """
 
-A = [[] for a in range(5)]
+import sys
 
-A[0].append(1)
-A[0].append(4)
-A[1].append(4)
-A[2].append(0)
-A[2].append(3)
-A[2].append(4)
-A[3].append(0)
-A[3].append(2)
-A[3].append(4)
-A[4].append(3)
+if len(sys.argv) < 3:
+    print "usage: %s num_vertices [v1,v2...]"%(sys.argv[0])
+
+A = [[] for a in range(int(sys.argv[1]))]
+
+for edge in sys.argv[2:]:
+    v1,v2 = edge.split(',', 1)
+    A[int(v1)].append(int(v2));
 
 def print_point_stack():
     for p in point_stack:
