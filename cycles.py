@@ -72,9 +72,8 @@ point_stack = list()
 marked = dict()
 marked_stack = list()
 
-def backtrack(v, f):
-    g = [False]
-    f[0] = False
+def backtrack(v):
+    f = False
     point_stack.append(v)
     marked[v] = True
     marked_stack.append(v)
@@ -83,10 +82,9 @@ def backtrack(v, f):
             A[w] = 0
         elif w==s:
             print_point_stack()
-            f[0] = True
+            f = True
         elif not marked[w]:
-            backtrack(w, g)
-            f[0] = f[0] or g[0]
+            f = backtrack(w) or f
     if f:
         while marked_stack[-1] != v:
             u = marked_stack.pop()
@@ -94,12 +92,13 @@ def backtrack(v, f):
         marked_stack.pop()
         marked[v] = False
     point_stack.pop()
+    return f
 
 for i in range(len(A)):
     marked[i] = False
 
 for s in range(len(A)):
-    backtrack(s, [False])
+    backtrack(s)
     while marked_stack:
         u = marked_stack.pop()
         marked[u] = False
