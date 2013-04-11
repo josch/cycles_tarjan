@@ -61,13 +61,13 @@ procedure circuit_enumeration;
 
 import sys
 
-if len(sys.argv) < 3:
-    print "usage: %s num_vertices [v1,v2...]"%(sys.argv[0])
+if len(sys.argv) != 2:
+    print "usage: echo \"v1 v2\nv1 v3\n...\" | %s num_vertices"%(sys.argv[0])
 
 A = [[] for a in range(int(sys.argv[1]))]
 
-for edge in sys.argv[2:]:
-    v1,v2 = edge.split(',', 1)
+for edge in sys.stdin.readlines():
+    v1,v2 = edge.split(' ', 1)
     A[int(v1)].append(int(v2));
 
 def print_point_stack():
