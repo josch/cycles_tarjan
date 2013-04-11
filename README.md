@@ -30,7 +30,7 @@ vertices as well as the edge list expected on standard input.
         sed -n -e '/^\s*[0-9]\+;$/p' graph.dot | wc -l
         sed -n -e 's/^\s*\([0-9]\) -> \([0-9]\);$/\1 \2/p' graph.dot
 
-The above lines works on DOT files like the following:
+The above lines work on DOT files like the following:
 
     digraph G {
       0;
